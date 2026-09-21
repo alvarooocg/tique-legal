@@ -46,7 +46,7 @@ body {
 }
 
 /* Cuerpo a dos columnas */
-.layout { display: grid; grid-template-columns: 240px 1fr; gap: 48px; padding: 40px 0 96px; }
+.layout { display: grid; grid-template-columns: 240px 1fr; gap: 48px; padding-top: 40px; padding-bottom: 96px; }
 .toc { position: sticky; top: 32px; align-self: start; font-size: 14px; }
 .toc ol { list-style: none; margin: 0; padding: 0; }
 .toc a {
@@ -79,7 +79,7 @@ th { font-weight: 600; }
 :focus-visible { outline: 2px solid var(--noche); outline-offset: 3px; }
 
 @media (max-width: 768px) {
-  .layout { grid-template-columns: 1fr; gap: 0; padding: 28px 0 64px; }
+  .layout { grid-template-columns: 1fr; gap: 0; padding-top: 28px; padding-bottom: 64px; }
   .toc { position: static; margin-bottom: 28px; }
   .toc-details summary { cursor: pointer; font-weight: 600; padding: 10px 0; }
 }
