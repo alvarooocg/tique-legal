@@ -86,6 +86,13 @@ th { font-weight: 600; }
 @media (min-width: 769px) {
   .toc-details > summary { display: none; }
   .toc-details > ol { display: block; }
+  /* Chromium wraps non-summary <details> content in an internal
+     ::details-content box that stays content-visibility: hidden with
+     height: 0 while the element isn't [open]; the child-selector rule
+     above can't reach through that, so force it open explicitly. */
+  .toc-details::details-content {
+    content-visibility: visible; height: auto; overflow: visible;
+  }
 }
 
 @media (max-width: 768px) {
