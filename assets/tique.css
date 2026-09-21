@@ -39,7 +39,12 @@ body {
   font-size: 34px; letter-spacing: -0.03em; color: var(--hueso);
   text-decoration: none; display: inline-block; line-height: 1;
 }
-.wordmark .dotless { color: var(--azul); }
+.wordmark .dotless { position: relative; display: inline-block; color: var(--hueso); }
+.wordmark .dotless::before {
+  content: ''; position: absolute; top: 0.12em; left: 0.02em;
+  width: 0.19em; height: 0.08em; background: var(--azul);
+  transform: rotate(-20deg);
+}
 .eyebrow {
   margin-top: 10px; font-size: 12px; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--piedra);
