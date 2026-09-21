@@ -78,6 +78,11 @@ th { font-weight: 600; }
 
 :focus-visible { outline: 2px solid var(--noche); outline-offset: 3px; }
 
+@media (min-width: 769px) {
+  .toc-details > summary { display: none; }
+  .toc-details > ol { display: block; }
+}
+
 @media (max-width: 768px) {
   .layout { grid-template-columns: 1fr; gap: 0; padding-top: 28px; padding-bottom: 64px; }
   .toc { position: static; margin-bottom: 28px; }
