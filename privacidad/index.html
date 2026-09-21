@@ -53,10 +53,14 @@
     <strong>[EMAIL]</strong>.</p>
 
     <h2 id="datos">2. Qué datos recogemos</h2>
-    <p><strong>Datos de tu cuenta.</strong> Para crear una cuenta necesitamos tu dirección de
-    correo electrónico y una contraseña. Si entras con Google o con Apple, en lugar de eso
-    recibimos el identificador de cuenta que esos servicios nos devuelven junto con la
-    dirección de correo asociada.</p>
+    <p><strong>Datos de tu cuenta.</strong> Para crear una cuenta necesitamos tu nombre, tu
+    dirección de correo electrónico y una contraseña. El nombre es el que se muestra dentro de
+    la app: puede ser el tuyo o el que prefieras usar. Si entras con Google o con Apple, en
+    lugar de eso recibimos el identificador de cuenta que esos servicios nos devuelven y la
+    dirección de correo asociada; con Google pedimos además el perfil básico, que incluye el
+    nombre de la cuenta, y Apple nos envía tu nombre y tus apellidos solo la primera vez que
+    autorizas la entrada. Ese nombre se guarda como el nombre con el que apareces en la
+    app.</p>
     <p><strong>Tu perfil.</strong> Tu racha de días de uso, tus puntos de experiencia y,
     si decides ponerte uno, un nombre de usuario público. Ten en cuenta que
     el nombre de usuario es la forma en que tus amigos te encuentran dentro de la app: si te
@@ -123,7 +127,9 @@
       <tbody>
         <tr><td>Supabase</td><td>Tu cuenta, tu actividad y las imágenes de tus tickets</td><td>Base de datos, autenticación y almacenamiento</td></tr>
         <tr><td>Anthropic</td><td>Las imágenes de los tickets que escaneas</td><td>Extraer automáticamente el comercio, la fecha y los importes</td></tr>
-        <tr><td>Open Food Facts</td><td>El texto de la búsqueda de un producto</td><td>Consultar información del producto</td></tr>
+        <tr><td>Open Food Facts</td><td>El texto de la búsqueda de un producto. Esta consulta sale desde nuestro servidor, no desde tu teléfono</td><td>Buscar productos por su nombre</td></tr>
+        <tr><td>Open Food Facts</td><td>La categoría que consultas y los productos cuyas fotos se muestran, junto con la dirección IP de tu dispositivo, porque estas peticiones salen directamente de tu teléfono</td><td>Mostrarte los productos de una categoría y sus imágenes</td></tr>
+        <tr><td>Open Food Facts (Open Prices)</td><td>Tu ubicación exacta —la latitud y la longitud que da tu dispositivo— y su dirección IP, cada vez que usas el comparador de precios</td><td>Localizar las tiendas cercanas a ti y consultar sus precios</td></tr>
         <tr><td>Google</td><td>Tu identificador de cuenta si entras con Google; la dirección IP de tu dispositivo al descargar las tipografías</td><td>Inicio de sesión y tipografías de la app</td></tr>
         <tr><td>Apple</td><td>Tu identificador de cuenta si entras con Apple</td><td>Inicio de sesión</td></tr>
       </tbody>
@@ -132,18 +138,26 @@
     verá tu nombre de usuario y el gasto que habéis repartido. Eso lo decides tú en cada caso.</p>
 
     <h2 id="transferencias">6. Transferencias fuera del EEE</h2>
-    <p>Dos de los proveedores de la tabla anterior tratan datos en Estados Unidos, fuera del
+    <p>Cuatro de los proveedores de la tabla anterior tratan datos en Estados Unidos, fuera del
     Espacio Económico Europeo:</p>
     <ul>
       <li><strong>Supabase</strong>, donde se alojan la base de datos, la autenticación y las
       imágenes de tus tickets.</li>
       <li><strong>Anthropic</strong>, a quien se envían las imágenes de los tickets para
       extraer sus datos.</li>
+      <li><strong>Google</strong>, que recibe la dirección IP de tu dispositivo cuando la app
+      descarga sus tipografías y, si entras con Google, tu identificador de cuenta y el perfil
+      básico asociado.</li>
+      <li><strong>Apple</strong>, que recibe tu identificador de cuenta si entras con
+      Apple.</li>
     </ul>
-    <p>Estas transferencias se amparan en las cláusulas contractuales tipo aprobadas por la
-    Comisión Europea, que ambos proveedores incorporan en sus contratos de tratamiento de
-    datos. Puedes solicitarnos una copia de las garantías aplicables en
-    <strong>[EMAIL]</strong>.</p>
+    <p>Con Supabase y con Anthropic, estas transferencias se amparan en las cláusulas
+    contractuales tipo aprobadas por la Comisión Europea, que ambos incorporan en sus contratos
+    de tratamiento de datos. Google y Apple no tratan estos datos bajo un contrato nuestro:
+    cuando entras con su cuenta o cuando tu dispositivo descarga las tipografías, el
+    tratamiento se rige por sus propias condiciones y por los mecanismos de transferencia que
+    cada uno declara en su política de privacidad, que puedes consultar directamente con ellos.
+    Puedes solicitarnos una copia de las garantías aplicables en <strong>[EMAIL]</strong>.</p>
 
     <h2 id="conservacion">7. Cuánto tiempo los guardamos</h2>
     <p>Conservamos tus datos mientras tu cuenta exista. Son tuyos y te siguen siendo útiles:
