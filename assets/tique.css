@@ -103,3 +103,47 @@ th { font-weight: 600; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* ---- Portada ----------------------------------------------------------
+   La home tiene que describir la app y enlazar a los documentos legales:
+   es lo que exige Google en la pantalla de consentimiento de OAuth, y lo
+   que espera cualquiera que llegue aquí desde la ficha de la tienda. */
+.home { padding: 56px 0 96px; }
+.hero { max-width: 34ch; }
+.hero h1 {
+  font-size: clamp(38px, 7vw, 62px);
+}
+.claim {
+  font-size: clamp(19px, 2.6vw, 23px);
+  line-height: 1.4;
+  color: var(--grafito80);
+  margin: 18px 0 0;
+  max-width: 46ch;
+}
+.lead { max-width: var(--medida); margin: 32px 0 0; }
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.features li {
+  background: var(--superficie);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin: 0;
+}
+.features h2 {
+  font-size: 17px;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+.features p { margin: 0; font-size: 15px; color: var(--grafito80); }
+
+.legal-links { margin: 56px 0 0; padding-top: 28px; border-top: 1px solid var(--piedra); }
+.legal-links h2 { font-size: 19px; margin: 0 0 14px; }
+.legal-links p { margin: 0 0 10px; }
+.contact { margin: 32px 0 0; font-size: 15px; color: var(--grafito80); }
