@@ -74,7 +74,7 @@ h2 {
 }
 article { max-width: var(--medida); }
 article p, article li { margin: 0 0 14px; }
-article a { color: var(--noche); text-decoration: underline; }
+article a, .home a { color: var(--noche); text-decoration: underline; }
 hr { border: 0; border-top: 1px solid var(--piedra); margin: 28px 0; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 0 0 18px; }
 th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--piedra); }
@@ -109,9 +109,9 @@ th { font-weight: 600; }
    es lo que exige Google en la pantalla de consentimiento de OAuth, y lo
    que espera cualquiera que llegue aquí desde la ficha de la tienda. */
 .home { padding: 56px 0 96px; }
-.hero { max-width: 34ch; }
 .hero h1 {
   font-size: clamp(38px, 7vw, 62px);
+  max-width: 12ch;
 }
 .claim {
   font-size: clamp(19px, 2.6vw, 23px);
