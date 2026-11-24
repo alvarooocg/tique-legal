@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Invitación a Tique</title>
+<!--
+  Bridge for Tique invite links (groups GR-XXXXXX and friends TQ-XXXXXX).
+  The app shares https://alvarooocg.github.io/tique-legal/unirse/?c=<code>,
+  which messaging apps make tappable and any phone camera opens; this page
+  hands the code to the app through its own scheme. Source of truth lives in
+  the app repo (docs/invite-bridge/), copied into tique-legal to publish.
+-->
+<style>
+  :root { --bg: #F4F3F0; --text: #0C0C0D; --muted: #464546; --line: #B3B0A8; --accent: #8FA8FF; --surface: #E4E2DE; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { background: #1A1A1C; color: var(--bg); padding: 28px 24px 24px; }
+  header .logo { font-size: 34px; font-weight: 800; letter-spacing: -1px; margin: 0; }
+  header p { margin: 6px 0 0; font-size: 15px; }
+  main { max-width: 440px; margin: 0 auto; padding: 28px 24px 40px; }
+  h1 { font-size: 26px; line-height: 1.15; margin: 0 0 8px; }
+  .lead { margin: 0 0 24px; color: var(--muted); line-height: 1.45; }
+  .btn { display: block; width: 100%; text-align: center; padding: 16px; border-radius: 999px;
+         font-size: 17px; font-weight: 600; text-decoration: none; border: 1px solid var(--text);
+         background: transparent; color: var(--text); cursor: pointer; font-family: inherit; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); }
+  .code-box { margin: 28px 0 12px; padding: 20px; background: var(--surface); border-radius: 16px; text-align: center; }
+  .code-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 30px; letter-spacing: 1px; margin: 0 0 14px; user-select: all; }
+  .copied { min-height: 20px; margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+  h2 { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 32px 0 8px;
+       padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  ol { padding-left: 20px; line-height: 1.6; margin: 12px 0 0; }
+  .invalid { display: none; }
+  body.no-code .valid { display: none; }
+  body.no-code .invalid { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <p class="logo">tique</p>
+  <p>Tus gastos, claros desde el primer ticket.</p>
+</header>
+<main>
+  <section class="valid">
+    <h1 id="title">Te han invitado a Tique</h1>
+    <p class="lead" id="lead">Abre la invitación en la app para entrar.</p>
+    <a class="btn primary" id="open" href="#">Abrir en Tique</a>
+
+    <div class="code-box">
+      <p class="code-label">Código</p>
+      <p class="code" id="code"></p>
+      <button class="btn" id="copy" type="button">Copiar código</button>
+      <p class="copied" id="copied" aria-live="polite"></p>
+    </div>
+
+    <h2>¿No se abre la app?</h2>
+    <ol id="steps"></ol>
+  </section>
+
+  <section class="invalid">
+    <h1>Este enlace no es válido</h1>
+    <p class="lead">Pide a quien te invitó que te envíe el enlace o el código otra vez.</p>
+  </section>
+</main>
+<script>
+(function () {
+  // Codes come from the server's alphabet (no 0/1/I/L/O); anything else is
+  // refused here so nothing from the URL reaches the page or the app.
+  var raw = new URLSearchParams(location.search).get('c') || '';
+  var m = raw.replace(/\s/g, '').toUpperCase().match(/^(TQ|GR)-?([23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6})$/);
+  if (!m) { document.body.classList.add('no-code'); return; }
+
+  var code = m[1] + '-' + m[2];
+  var isGroup = m[1] === 'GR';
+  var appLink = 'com.tique.tiqueapp://app/invite/' + code;
+
+  document.getElementById('code').textContent = code;
+  document.getElementById('open').href = appLink;
+  document.getElementById('title').textContent = isGroup ? 'Te han invitado a un grupo' : 'Te han invitado a Tique';
+  document.getElementById('lead').textContent = isGroup
+    ? 'Abre la invitación en Tique para entrar al grupo y compartir gastos.'
+    : 'Abre la invitación en Tique para añadir a quien te invitó como amigo.';
+
+  var steps = isGroup
+    ? ['Instala Tique y entra con tu cuenta.', 'Ve a Grupos → Unirme con código.', 'Escribe el código ' + code + '.']
+    : ['Instala Tique.', 'Escribe el código ' + code + ' al registrarte, o ve a Amigos → Introducir código.'];
+  var list = document.getElementById('steps');
+  steps.forEach(function (text) { var li = document.createElement('li'); li.textContent = text; list.appendChild(li); });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var done = function () { document.getElementById('copied').textContent = 'Copiado'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, function () {});
+  });
+
+  // On a phone, try the app straight away; if it is not installed nothing
+  // happens and the page stays with the button and the code.
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    setTimeout(function () { location.href = appLink; }, 300);
+  }
+})();
+</script>
+</body>
+</html>
